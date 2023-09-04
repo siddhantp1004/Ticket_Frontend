@@ -1,0 +1,51 @@
+/* Add this CSS to your component's CSS file or a global CSS file */
+.priority-critical {
+  color: rgb(255, 0, 0);
+}
+
+.priority-high {
+  color: rgb(255, 127, 53);
+  /* You mentioned red for high in your question */
+}
+
+.priority-medium {
+  color: rgb(255, 226, 6);
+}
+
+.priority-low {
+  color: green;
+}
+
+/* input[type="radio"]:hover {
+  border-color: blue;
+  /* Change this to the desired color 
+} */
+/* .example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+} */
+
+/* .example-full-width {
+  width: 100%;
+} */
+
+
+.custom-mat-datepicker-container {
+  position: relative;
+}
+
+.custom-mat-datepicker-container .mat-form-field-infix {
+  padding-right: 48px; 
+}
+
+.custom-mat-datepicker-container .mat-datepicker-toggle {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+

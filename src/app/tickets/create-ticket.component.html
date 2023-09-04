@@ -1,0 +1,297 @@
+<form #ticketForm="ngForm" (ngSubmit)="saveTicket(ticketForm)">
+  <div class="container mt-4">
+    <div class="card">
+      <div class="card-header">
+        <strong>
+          <h3 class="card-title">Create Ticket</h3>
+        </strong>
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <strong><label for="ticketInit">Initiator</label></strong>
+              <input id="ticketInit" type="text" [(ngModel)]="ticketInit" name="Ticket Initiator" class="form-control"
+                required minlength="15" maxlength="25" #initiatorInput="ngModel" [class.is-invalid]="
+                  initiatorInput.invalid &&
+                  (initiatorInput.dirty || initiatorInput.touched)
+                " />
+              <div *ngIf="initiatorInput.invalid && (initiatorInput.dirty || initiatorInput.touched)"
+                class="invalid-feedback">
+                <div *ngIf="initiatorInput.errors?.['required']">
+                  Initiator is required*
+                </div>
+                <div *ngIf="initiatorInput.errors?.['minlength']">
+                  Initiator must be at least 15 characters long.
+                </div>
+                <div *ngIf="initiatorInput.errors?.['maxlength']">
+                  Initiator cannot exceed 20 characters.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group text-right">
+              <strong><label for="ticketInit">Work Email</label></strong>
+              <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+                <input id="ticketInit" name="ticketEmail" [(ngModel)]="ticketEmail" #ticketEmailInput="ngModel"
+                  type="email" class="form-control" required [class.is-invalid]="
+                    ticketEmailInput.invalid &&
+                    (ticketEmailInput.dirty || ticketEmailInput.touched)
+                  " email />
+                <div *ngIf="
+                    ticketEmailInput.invalid &&
+                    (ticketEmailInput.dirty || ticketEmailInput.touched)
+                  " class="invalid-feedback">
+                  <div *ngIf="ticketEmailInput.errors?.['required']">
+                    Email is required*
+                  </div>
+                  <div *ngIf="ticketEmailInput.errors?.['email']">
+                    Invalid email format.
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <strong><label for="ticketCategory">Category</label></strong>
+              <select id="ticketCategory" name="TicketCategory" [(ngModel)]="ticketCategory" class="form-select"
+                required #ticketCategoryInput="ngModel" [class.is-invalid]="
+                  ticketCategoryInput.invalid &&
+                  (ticketCategoryInput.dirty || ticketCategoryInput.touched)
+                ">
+                <option value=" " disabled>Select a category</option>
+                <option value="Incident">Incident</option>
+                <option value="Request">Request</option>
+                <option value="Problem">Problem</option>
+                <option value="Change">Change</option>
+                <option value="Service Request">Service Request</option>
+                <option value="Access Control">Access Control</option>
+              </select>
+              <div *ngIf="
+                  ticketCategoryInput.invalid &&
+                  (ticketCategoryInput.dirty || ticketCategoryInput.touched)
+                " class="invalid-feedback">
+                <div *ngIf="ticketCategoryInput.errors?.['required']">
+                  Category is required*
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group text-right">
+              <strong><label for="ticketInit">Impact</label></strong>
+
+              <div class="d-flex flex-wrap mt-2">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="ticketImpact" id="lowImpact" value="low"
+                    [(ngModel)]="ticketImpact" required #ticketImpactInput="ngModel" />
+                  <label class="form-check-label" for="lowImpact">Low</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="ticketImpact" id="mediumImpact" value="medium"
+                    [(ngModel)]="ticketImpact" />
+                  <label class="form-check-label" for="mediumImpact">Medium</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="ticketImpact" id="highImpact" value="high"
+                    [(ngModel)]="ticketImpact" />
+                  <label class="form-check-label" for="highImpact">High</label>
+                </div>
+              </div>
+              <div *ngIf="
+                  ticketImpactInput.invalid &&
+                  (ticketImpactInput.dirty || ticketImpactInput.touched)
+                " class="text-danger">
+                Impact is required.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <strong><label for="description">Short Description</label></strong>
+          <input id="description" type="text" [(ngModel)]="ticketDescShort" name="Description Short"
+            class="form-control" required minlength="50" maxlength="100" #shortDescription="ngModel" [class.is-invalid]="
+              shortDescription.invalid &&
+              (shortDescription.dirty || shortDescription.touched)
+            " />
+
+          <div *ngIf="
+              shortDescription.invalid &&
+              (shortDescription.dirty || shortDescription.touched)
+            " class="invalid-feedback">
+            <div *ngIf="shortDescription.errors?.['required']">
+              Short Description is required*
+            </div>
+            <div *ngIf="shortDescription.errors?.['minlength']">
+              Short Description must be at least 50 characters long.
+            </div>
+            <div *ngIf="shortDescription.errors?.['maxlength']">
+              Short Description cannot exceed 100 characters.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <strong><label for="longDescription">Description</label></strong>
+          <textarea [(ngModel)]="ticketDescLong" class="form-control" id="longDescription" rows="3"
+            name="Description Long" required minlength="80" maxlength="300" #descriptionInput="ngModel"
+            [class.is-invalid]="
+              descriptionInput.invalid &&
+              (descriptionInput.dirty || descriptionInput.touched)
+            "></textarea>
+
+          <div *ngIf="
+              descriptionInput.invalid &&
+              (descriptionInput.dirty || descriptionInput.touched)
+            " class="invalid-feedback">
+            <div *ngIf="descriptionInput.errors?.['required']">
+              Description is required.
+            </div>
+            <div *ngIf="descriptionInput.errors?.['minlength']">
+              Description must be at least 80 characters long.
+            </div>
+            <div *ngIf="descriptionInput.errors?.['maxlength']">
+              Description cannot exceed 300 characters.
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group mt-3">
+                <strong><label>Priority</label></strong>
+                <div class="form-check">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Priority" value="critical" [(ngModel)]="priority"
+                      required #priorityInput="ngModel" />
+                    <label class="form-check-label priority-critical">
+                      <strong>Critical</strong>
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Priority" value="high" [(ngModel)]="priority" />
+                    <label class="form-check-label priority-high">
+                      <strong>High</strong>
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Priority" value="medium"
+                      [(ngModel)]="priority" />
+                    <label class="form-check-label priority-medium">
+                      <strong>Medium</strong>
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="Priority" value="low" [(ngModel)]="priority" />
+                    <label class="form-check-label priority-low">
+                      <strong>Low</strong>
+                    </label>
+                  </div>
+                </div>
+                <div *ngIf="
+                    priorityInput.invalid &&
+                    (priorityInput.dirty || priorityInput.touched)
+                  " class="invalid-feedback">
+                  Priority is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="radio-inline">
+                <div class="form-group mt-3">
+                  <strong><label>State</label></strong>
+
+                  <div class="form-check">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="State" value="In Progress"
+                        [(ngModel)]="ticketState" />
+                      <label class="form-check-label"> In Progress </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="State" value="New" [(ngModel)]="ticketState" />
+                      <label class="form-check-label"> New </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="State" value="Resolved"
+                        [(ngModel)]="ticketState" />
+                      <label class="form-check-label"> Resolved </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="State" value="On Hold"
+                        [(ngModel)]="ticketState" />
+                      <label class="form-check-label"> On Hold </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="State" value="Closed"
+                        [(ngModel)]="ticketState" />
+                      <label class="form-check-label"> Closed </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="State" value="Cancelled"
+                        [(ngModel)]="ticketState" />
+                      <label class="form-check-label"> Cancelled </label>
+                    </div>
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <strong><label for="ticketId">Assigned By</label></strong>
+                  <input id="ticketCategory" name="Assigned By" [(ngModel)]="AssignedBy" type="text"
+                    class="form-control" />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group text-right">
+                  <strong><label for="ticketInit">Assigned To</label></strong>
+                  <input id="ticketInit" name="Assigned To" [(ngModel)]="AssignedTo" type="text" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group custom-mat-datepicker-container mt-4">
+            <strong><label for="datepicker">Initiation</label></strong>
+            <mat-form-field appearance="outline">
+              <mat-label>Initiation Date</mat-label>
+              <input matInput [matDatepicker]="picker" name="Date" [(ngModel)]="Date" />
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+Angular Form Model : {{ ticketForm.value | json }}

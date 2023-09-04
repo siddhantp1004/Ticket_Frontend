@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-lg-4" *ngFor="let ticket of tickets">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">{{ ticket.description }}</h4>
+        </div>
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <strong>Work Email:</strong>
+            </div>
+            <div class="col-md-6">
+              {{ ticket.workEmail }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <strong>Id:</strong>
+            </div>
+            <div class="col-md-6">
+              {{ ticket.ticketId }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <strong>Description:</strong>
+            </div>
+            <div class="col-md-6">
+              {{ ticket.description }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <strong>Short Description:</strong>
+            </div>
+            <div class="col-md-6">
+              {{ ticket.shortDescription }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <strong>Category:</strong>
+            </div>
+            <div class="col-md-6">
+              {{ ticket.category }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <strong>Ticket State:</strong>
+            </div>
+            <div class="col-md-6">
+              {{ ticket.ticketState }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <strong>Ticket Urgency:</strong>
+            </div>
+            <div class="col-md-6">
+              {{ ticket.ticketUrgency }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <strong>Opened By:</strong>
+            </div>
+            <div class="col-md-6">
+              {{ ticket.openedBy }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <strong>Assigned By:</strong>
+            </div>
+            <div class="col-md-6">
+              {{ ticket.assignedBy }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <strong>Assigned To:</strong>
+            </div>
+            <div class="col-md-6">
+              {{ ticket.assignedTo }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <strong>Opened Date:</strong>
+            </div>
+            <div class="col-md-6">
+              {{ ticket.openedDate }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <strong>Resolution Comment:</strong>
+            </div>
+            <div class="col-md-6">
+              {{ ticket.resolutionDate }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <strong>Resolution Date:</strong>
+            </div>
+            <div class="col-md-6">
+              {{ ticket.resolutionDate }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
